@@ -1,0 +1,59 @@
+t03 — A flow and a library, created through the API
+============================================================
+The web interface does everything in this transcript by
+clicking; the lab used the same API calls the interface makes
+(POST /api/v2/cruddb with {"data":{"collection":…,"mode":…,
+"docID":…,"obj":…}}) so that every step could be written down.
+The driver script is tdarr-lab/make-flow-library.py; the two
+documents it inserts are tdarr-lab/lab-flow.json and
+tdarr-lab/library.json.
+
+The flow — "Lab Flow - Make H.264" (_id "labflowh264"):
+
+  Input File
+    -> Check Video Codec   (input: codec = "h264")
+         output 1 "file has codec"     -> (end of flow:
+                                           the file is left alone)
+         output 2 "does not have it"   -> Begin Command
+    -> Set Video Encoder   (outputCodec "h264", preset
+                            "veryfast", quality "23",
+                            hardware encoding/decoding OFF)
+    -> Execute             (runs the built ffmpeg command)
+    -> Replace Original File
+
+The library — "Lab Library" (_id "lablibrary1"): the web
+interface's own default library document, with only these
+fields changed:
+
+  name     "Lab Library"
+  folder   the lab's media folder (the two fixtures)
+  cache    the lab's cache folder
+  flowId   "labflowh264"
+  decisionMaker.settingsPlugin  true  -> false
+  decisionMaker.settingsFlows   false -> true
+  pluginIDs                     [the default classic stack] -> []
+
+plus one change made later, after t04's first failure:
+
+  handbrakescan  true  -> false     (health checks: use ffmpeg,
+  ffmpegscan     false -> true       not the absent HandBrakeCLI)
+
+And one server-wide switch, so finished work replaces
+originals without waiting for a human to accept it in the
+staging area (the default is to wait):
+
+  SettingsGlobalJSONDB "globalsettings":
+    autoAcceptTranscodes  false -> true
+
+Proof both documents landed (getAll on each collection,
+trimmed):
+
+  Flows now: [{"_id": "labflowh264", "name": "Lab Flow -
+    Make H.264", "description": "Files whose video is not
+    H.264 are re-encoded to H.264 with ffmpeg (other streams
+    copied). H.264 files pass through untouched. The result
+    replaces the original file.", …}]
+
+  Libraries now: [{"name": "Lab Library", "folder":
+    "…/media", … "cache": "…/cache", …
+    "flowId": "labflowh264" …}]

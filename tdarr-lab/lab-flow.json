@@ -1,0 +1,121 @@
+{
+ "_id": "labflowh264",
+ "name": "Lab Flow - Make H.264",
+ "description": "Files whose video is not H.264 are re-encoded to H.264 with ffmpeg (other streams copied). H.264 files pass through untouched. The result replaces the original file.",
+ "tags": "",
+ "flowPlugins": [
+  {
+   "name": "Input File",
+   "sourceRepo": "Community",
+   "pluginName": "inputFile",
+   "version": "1.0.0",
+   "id": "inA",
+   "position": {
+    "x": 300,
+    "y": 40
+   }
+  },
+  {
+   "name": "Check Video Codec",
+   "sourceRepo": "Community",
+   "pluginName": "checkVideoCodec",
+   "version": "1.0.0",
+   "id": "chkB",
+   "position": {
+    "x": 300,
+    "y": 160
+   },
+   "inputsDB": {
+    "codec": "h264"
+   }
+  },
+  {
+   "name": "Begin Command",
+   "sourceRepo": "Community",
+   "pluginName": "ffmpegCommandStart",
+   "version": "1.0.0",
+   "id": "cmdC",
+   "position": {
+    "x": 300,
+    "y": 280
+   }
+  },
+  {
+   "name": "Set Video Encoder",
+   "sourceRepo": "Community",
+   "pluginName": "ffmpegCommandSetVideoEncoder",
+   "version": "1.0.0",
+   "id": "encD",
+   "position": {
+    "x": 300,
+    "y": 400
+   },
+   "inputsDB": {
+    "outputCodec": "h264",
+    "hardwareEncoding": false,
+    "hardwareDecoding": false,
+    "ffmpegPreset": "veryfast",
+    "ffmpegQuality": "23"
+   }
+  },
+  {
+   "name": "Execute",
+   "sourceRepo": "Community",
+   "pluginName": "ffmpegCommandExecute",
+   "version": "1.0.0",
+   "id": "exeE",
+   "position": {
+    "x": 300,
+    "y": 520
+   }
+  },
+  {
+   "name": "Replace Original File",
+   "sourceRepo": "Community",
+   "pluginName": "replaceOriginalFile",
+   "version": "1.0.0",
+   "id": "repF",
+   "position": {
+    "x": 300,
+    "y": 640
+   }
+  }
+ ],
+ "flowEdges": [
+  {
+   "source": "inA",
+   "sourceHandle": "1",
+   "target": "chkB",
+   "targetHandle": null,
+   "id": "e1"
+  },
+  {
+   "source": "chkB",
+   "sourceHandle": "2",
+   "target": "cmdC",
+   "targetHandle": null,
+   "id": "e2"
+  },
+  {
+   "source": "cmdC",
+   "sourceHandle": "1",
+   "target": "encD",
+   "targetHandle": null,
+   "id": "e3"
+  },
+  {
+   "source": "encD",
+   "sourceHandle": "1",
+   "target": "exeE",
+   "targetHandle": null,
+   "id": "e4"
+  },
+  {
+   "source": "exeE",
+   "sourceHandle": "1",
+   "target": "repF",
+   "targetHandle": null,
+   "id": "e5"
+  }
+ ]
+}

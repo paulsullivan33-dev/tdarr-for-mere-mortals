@@ -1,0 +1,115 @@
+t02 — First start of the server, sign-in, plugins, and a node
+============================================================
+The lab ran Tdarr on its own default ports throughout: the web
+interface and API on 8265, the port nodes connect to on 8266.
+Everything below happened on loopback, and both programs were
+shut down when the lab finished.
+
+Starting the server:
+
+  $ ./Tdarr_Server
+  …
+  WebUIPort:8265
+  ModuleConfigPath:…/configs/Tdarr_Server_Config.json
+  AppVersion:3.04.00
+  …
+  "serverPort": "8266",
+  "webUIPort": "8265",
+  "serverIP": "0.0.0.0",
+  …
+  "auth": true,
+
+On first start the server creates, next to the program folder:
+configs/ (its settings), server/Tdarr/ (its data: DB2 database
+folders, Plugins, Logs, Backups) and logs/.
+
+Its start-up self-tests (from the server log, lightly trimmed):
+
+  Binary test 1: handbrakePath not working        <- HandBrakeCLI is
+  Binary test 2: ffmpegPath not working               not bundled; the
+  Binary test 3: mkvpropeditPath working              ffmpeg line is
+  Scanner test 1: FFprobe working                     about an empty
+  Scanner test 2: Exiftool working                    custom path —
+  Scanner test 3: Mediainfo working                   the bundled
+  Scanner test 4: CCExtractor not working:            ffprobe/ffmpeg
+    …libtesseract.so.4: cannot open shared object…    work (t04 shows
+                                                      the bundled
+                                                      ffmpeg running)
+
+  $ curl -s http://127.0.0.1:8265/api/v2/status
+  {"status":"good","isProduction":true,"os":"linux",
+   "version":"3.04.00","buildDate":"2026_10_27T16_56_14z",
+   "uptime":36,"serverEngine":"rust"}
+
+Sign-in: a fresh server has no users, and most of the API
+refuses politely until one exists:
+
+  $ curl -s http://127.0.0.1:8265/api/v2/get-nodes
+  {"status":401,"message":"No users","setupAdmin":true}
+
+The web interface's first run is a setup wizard that creates
+the administrator. This lab was driven entirely through the
+API on a loopback-only sandbox, so instead the lab set
+"auth": false in configs/Tdarr_Server_Config.json and
+restarted — Tdarr's own switch for a trusted single-machine
+setup. (Chapter 3 says plainly: leave auth on anywhere the
+port is reachable by anyone else.) After the restart the same
+call answers {"…nodes…"} instead of 401.
+
+Plugins: on start, the server tries to refresh the community
+plugin library from its GitHub repository —
+
+  [ERROR] Error checking latest plugin repo commit: io:
+  invalid peer certificate: UnknownIssuer
+  [ERROR] [Plugin Update] Could not resolve a target SHA; aborting
+
+— the same sandbox proxy that defeated the Updater (t00). The
+lab fetched the project's plugin repository the way the
+updater would (a zip of HaveAGitGat/Tdarr_Plugins) and placed
+its contents where the server keeps them, under
+server/Tdarr/Plugins/:
+
+  Community/                     107 classic plugins
+  FlowPlugins/CommunityFlowPlugins/
+  FlowPlugins/CommunityFlowTemplates/
+  FlowPlugins/FlowHelpers/       <- easy to forget, see t04
+  methods/                       <- also easy to forget, see t04
+
+A node:
+
+  $ ./Tdarr_Node
+  …creates configs/Tdarr_Node_Config.json with a random name
+  ("good-gar" here), serverIP "0.0.0.0", serverPort "8266".
+
+The node's first attempt to reach the server failed for 30
+seconds at a time — its log named the culprit:
+
+  [ERROR] Error: timeout: resolve, code=ETIMEDOUT,
+    POST http://0.0.0.0:8266/api/v2/nodes/version-check
+  [ERROR] Error: CONNECT proxy failed: proxy server did not respond
+
+The sandbox's proxy settings cover "localhost" and "127.0.0.1"
+but not "0.0.0.0", so the node's own HTTP client posted its
+handshake to the proxy. Pointing the node config at the
+loopback address by number fixed it:
+
+  "serverIP": "127.0.0.1",
+  "serverURL": "http://127.0.0.1:8266",
+
+  $ curl -s http://127.0.0.1:8265/api/v2/get-nodes
+  {"wGbaDIM":{"_id":"wGbaDIM","nodeName":"good-gar",
+    "remoteAddress":"127.0.0.1", …
+    "workerLimits":{"healthcheckcpu":0,"healthcheckgpu":0,
+                    "transcodecpu":0,"transcodegpu":0}, …}}
+
+A fresh node has ZERO workers of every kind — registered, but
+it will never take a job until you give it some:
+
+  $ curl -s -X POST …/api/v2/alter-worker-limit
+      -d '{"data":{"nodeID":"wGbaDIM","process":"increase",
+                   "workerType":"transcodecpu"}}'
+  OK
+  (same again for "healthcheckcpu")
+
+  workerLimits -> {'healthcheckcpu': 1, 'healthcheckgpu': 0,
+                   'transcodecpu': 1, 'transcodegpu': 0}

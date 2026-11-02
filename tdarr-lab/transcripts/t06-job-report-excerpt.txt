@@ -1,0 +1,259 @@
+Excerpt from the server's own job report for the successful transcode of
+"Harbour Lights - Trailer.mkv" (job X6mUBRO, Tdarr 3.04.00).
+Full reports are kept by the server under server/Tdarr/DB2/JobReports/ and
+include the complete library settings and probe JSON; those very long lines
+are trimmed or omitted here and marked as such. Nothing else is edited.
+
+2026-11-02T15:42:01.881Z X6mUBRO:[Step S01] [3.04.00] Server relay initialising job
+2026-11-02T15:42:01.882Z X6mUBRO:Server: linux_x64_docker_false
+2026-11-02T15:42:01.883Z X6mUBRO:Server relay adding file to staged files
+2026-11-02T15:42:01.883Z X6mUBRO:Server relay sending job to Node relay: good-gar
+2026-11-02T15:42:01.883Z X6mUBRO:Node[good-gar]:[Step N01] [3.04.00] Node relay received job
+2026-11-02T15:42:01.883Z X6mUBRO:Node[good-gar]:{"nodeName":"good-gar","serverURL":"http://127.0.0.1:8266","serverIP":"127.0.0.1","serverPort":"8266","handbrakePath":"","ffmpegPath":"","mkvpropeditPath":"","pathTranslators":[{"server":"","node":""}],"nodeType":"mapped","unmappedNodeCache":"/home/hat …[long line trimmed]
+2026-11-02T15:42:01.883Z X6mUBRO:Node[good-gar]:Node relay sending job to worker:odd-olm
+2026-11-02T15:42:01.884Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W01] Received file, original: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:01.884Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"workerType":"transcodecpu"}
+2026-11-02T15:42:01.884Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"ffmpegPath":"/home/hatch/workspace/tdarr-labwork/tdarr/assets/app/ffmpeg/linux_x64/ffmpeg"}
+2026-11-02T15:42:01.884Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"handbrakePath":"HandBrakeCLI"}
+2026-11-02T15:42:01.884Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"mkvpropeditPath":"mkvpropedit"}
+2026-11-02T15:42:01.884Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"gpuSelect":"-"}
+2026-11-02T15:42:01.885Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"allowGpuDoCpu":false}
+2026-11-02T15:42:01.885Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"thoroughHealthCheckCpuExtraInputArgs":""}
+2026-11-02T15:42:01.885Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"thoroughHealthCheckGpuExtraInputArgs":""}
+2026-11-02T15:42:01.885Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"thoroughHealthCheckCpuExtraArgs":""}
+2026-11-02T15:42:01.885Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"thoroughHealthCheckGpuExtraArgs":""}
+2026-11-02T15:42:01.885Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"logFullCliOutput":false}
+2026-11-02T15:42:01.886Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"runMkvpropedit":false}
+2026-11-02T15:42:01.886Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"dontCleanWorkerCacheFolder":false}
+2026-11-02T15:42:01.886Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Path translating objects
+2026-11-02T15:42:01.886Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Running path translator tests
+2026-11-02T15:42:01.886Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Path translator tests passed
+2026-11-02T15:42:01.887Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning original library file
+2026-11-02T15:42:01.887Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{
+2026-11-02T15:42:01.887Z   "exifToolScan": true,
+2026-11-02T15:42:01.887Z   "mediaInfoScan": true,
+2026-11-02T15:42:01.887Z   "closedCaptionScan": false
+2026-11-02T15:42:01.887Z }
+2026-11-02T15:42:01.887Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Node scanning file
+2026-11-02T15:42:02.888Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan complete
+2026-11-02T15:42:02.889Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Original file scanned
+2026-11-02T15:42:02.891Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Source file to work on determined:"/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:02.891Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W02] Loading flow
+2026-11-02T15:42:02.891Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Item from queue, creating flow
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Creating workDir: "/home/hatch/workspace/tdarr-labwork/cache/tdarr-workDir2-X6mUBRO"
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Found next plugin: labflowh264::inA Input File
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W03] [C1] [Lab Flow - Make H.264] Running Community plugin: 1.0.0: inputFile: Input File 
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning original library file
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{
+2026-11-02T15:42:02.894Z   "exifToolScan": true,
+2026-11-02T15:42:02.894Z   "mediaInfoScan": false,
+2026-11-02T15:42:02.894Z   "closedCaptionScan": false
+2026-11-02T15:42:02.894Z }
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:mapped node, file is original, no need to download
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loading source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan types: {
+2026-11-02T15:42:02.894Z   "exifToolScan": true,
+2026-11-02T15:42:02.894Z   "mediaInfoScan": false,
+2026-11-02T15:42:02.894Z   "closedCaptionScan": false
+2026-11-02T15:42:02.894Z }
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning file
+2026-11-02T15:42:02.894Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Node scanning file
+2026-11-02T15:42:03.895Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan complete
+2026-11-02T15:42:03.897Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Source file scan complete
+2026-11-02T15:42:03.900Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loaded plugin inputs: {
+2026-11-02T15:42:03.900Z   "fileAccessChecks": "false",
+2026-11-02T15:42:03.900Z   "pauseNodeIfAccessChecksFail": "false"
+2026-11-02T15:42:03.900Z }
+2026-11-02T15:42:03.916Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Skipping file access checks
+2026-11-02T15:42:04.917Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Plugin run complete
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"_id":"/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv","outputNumber":1,"variables":{"automation":{}}}
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Found next plugin: labflowh264::chkB Check Video Codec
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W03] [C2] [Lab Flow - Make H.264] Running Community plugin: 1.0.0: checkVideoCodec: Check Video Codec 
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning original library file
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{
+2026-11-02T15:42:04.918Z   "exifToolScan": true,
+2026-11-02T15:42:04.918Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.918Z   "closedCaptionScan": false
+2026-11-02T15:42:04.918Z }
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:mapped node, file is original, no need to download
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loading source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan types: {
+2026-11-02T15:42:04.918Z   "exifToolScan": true,
+2026-11-02T15:42:04.918Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.918Z   "closedCaptionScan": false
+2026-11-02T15:42:04.918Z }
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Using cached scan results
+2026-11-02T15:42:04.918Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loaded plugin inputs: {
+2026-11-02T15:42:04.918Z   "codec": "h264"
+2026-11-02T15:42:04.918Z }
+2026-11-02T15:42:04.920Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Plugin run complete
+2026-11-02T15:42:04.920Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"_id":"/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv","outputNumber":2,"variables":{"automation":{}}}
+2026-11-02T15:42:04.920Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Found next plugin: labflowh264::cmdC Begin Command
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W03] [C3] [Lab Flow - Make H.264] Running Community plugin: 1.0.0: ffmpegCommandStart: Begin Command 
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning original library file
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{
+2026-11-02T15:42:04.921Z   "exifToolScan": true,
+2026-11-02T15:42:04.921Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.921Z   "closedCaptionScan": false
+2026-11-02T15:42:04.921Z }
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:mapped node, file is original, no need to download
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loading source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan types: {
+2026-11-02T15:42:04.921Z   "exifToolScan": true,
+2026-11-02T15:42:04.921Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.921Z   "closedCaptionScan": false
+2026-11-02T15:42:04.921Z }
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Using cached scan results
+2026-11-02T15:42:04.921Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loaded plugin inputs: {}
+2026-11-02T15:42:04.922Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Plugin run complete
+2026-11-02T15:42:04.922Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"_id":"/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv","outputNumber":1,"variables":{"automation":{},"ffmpegCommand":{"init":true,"inputFiles":[],"streams":[{"index":0,"codec_name":"mpeg2video","codec_long_name" …[long line trimmed]
+2026-11-02T15:42:04.922Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Found next plugin: labflowh264::encD Set Video Encoder
+2026-11-02T15:42:04.922Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W03] [C4] [Lab Flow - Make H.264] Running Community plugin: 1.0.0: ffmpegCommandSetVideoEncoder: Set Video Encoder 
+2026-11-02T15:42:04.922Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning original library file
+2026-11-02T15:42:04.922Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{
+2026-11-02T15:42:04.922Z   "exifToolScan": true,
+2026-11-02T15:42:04.922Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.922Z   "closedCaptionScan": false
+2026-11-02T15:42:04.922Z }
+2026-11-02T15:42:04.922Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:mapped node, file is original, no need to download
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loading source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan types: {
+2026-11-02T15:42:04.923Z   "exifToolScan": true,
+2026-11-02T15:42:04.923Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.923Z   "closedCaptionScan": false
+2026-11-02T15:42:04.923Z }
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Using cached scan results
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loaded plugin inputs: {
+2026-11-02T15:42:04.923Z   "outputCodec": "h264",
+2026-11-02T15:42:04.923Z   "ffmpegPresetEnabled": "true",
+2026-11-02T15:42:04.923Z   "ffmpegPreset": "veryfast",
+2026-11-02T15:42:04.923Z   "ffmpegQualityEnabled": "true",
+2026-11-02T15:42:04.923Z   "ffmpegQuality": "23",
+2026-11-02T15:42:04.923Z   "hardwareEncoding": false,
+2026-11-02T15:42:04.923Z   "hardwareType": "auto",
+2026-11-02T15:42:04.923Z   "hardwareDecoding": false,
+2026-11-02T15:42:04.923Z   "forceEncoding": "true"
+2026-11-02T15:42:04.923Z }
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Hardware encoding is disabled in plugin input options
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Worker type is not GPU
+2026-11-02T15:42:04.923Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Plugin run complete
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"_id":"/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv","outputNumber":1,"variables":{"automation":{},"ffmpegCommand":{"init":true,"inputFiles":[],"streams":[{"index":0,"codec_name":"mpeg2video","codec_long_name" …[long line trimmed]
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Found next plugin: labflowh264::exeE Execute
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W03] [C5] [Lab Flow - Make H.264] Running Community plugin: 1.0.0: ffmpegCommandExecute: Execute 
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning original library file
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{
+2026-11-02T15:42:04.924Z   "exifToolScan": true,
+2026-11-02T15:42:04.924Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.924Z   "closedCaptionScan": false
+2026-11-02T15:42:04.924Z }
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:mapped node, file is original, no need to download
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loading source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning source file: "/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan types: {
+2026-11-02T15:42:04.924Z   "exifToolScan": true,
+2026-11-02T15:42:04.924Z   "mediaInfoScan": false,
+2026-11-02T15:42:04.924Z   "closedCaptionScan": false
+2026-11-02T15:42:04.924Z }
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Using cached scan results
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loaded plugin inputs: {}
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Processing file
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"spawnArgs":["-y","-i","/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv","-map","0:0","-c:0","libx264","-crf","23","-preset","veryfast","-map","0:1","-c:1","copy","/home/hatch/workspace/tdarr-labwork/cache/tdarr- …[long line trimmed]
+2026-11-02T15:42:04.924Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Running /home/hatch/workspace/tdarr-labwork/tdarr/assets/app/ffmpeg/linux_x64/ffmpeg -y -i /home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv -map 0:0 -c:0 libx264 -crf 23 -preset veryfast -map 0:1 -c:1 copy /home/ha …[long line trimmed]
+2026-11-02T15:42:05.926Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:ffmpeg version 7.1.4-Jellyfin Copyright (c) 2000-2026 the FFmpeg developers
+2026-11-02T15:42:05.926Z Input #0, matroska,webm, from '/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv':
+2026-11-02T15:42:05.926Z   Metadata:
+2026-11-02T15:42:05.926Z     ENCODER         : Lavf62.12.102
+2026-11-02T15:42:05.926Z   Duration: 00:00:06.00, start: -0.011000, bitrate: 2315 kb/s
+2026-11-02T15:42:05.926Z   Stream #0:0: Video: mpeg2video (Main), yuv420p(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], 25 fps, 25 tbr, 1k tbn
+2026-11-02T15:42:05.926Z       Metadata:
+2026-11-02T15:42:05.926Z         ENCODER         : Lavc62.28.102 mpeg2video
+2026-11-02T15:42:05.926Z         DURATION        : 00:00:06.000000000
+2026-11-02T15:42:05.926Z       Side data:
+2026-11-02T15:42:05.926Z         cpb: bitrate max/min/avg: 0/0/0 buffer size: 49152 vbv_delay: N/A
+2026-11-02T15:42:05.926Z   Stream #0:1: Audio: mp2, 44100 Hz, mono, s16p, 384 kb/s
+2026-11-02T15:42:05.926Z       Metadata:
+2026-11-02T15:42:05.926Z         ENCODER         : Lavc62.28.102 mp2
+2026-11-02T15:42:05.926Z         DURATION        : 00:00:06.000000000
+2026-11-02T15:42:05.926Z Stream mapping:
+2026-11-02T15:42:05.926Z   Stream #0:0 -> #0:0 (mpeg2video (native) -> h264 (libx264))
+2026-11-02T15:42:05.926Z   Stream #0:1 -> #0:1 (copy)
+2026-11-02T15:42:05.926Z Press [q] to stop, [?] for help
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] using SAR=1/1
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2 AVX512
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] profile High, level 3.0, 4:2:0, 8-bit
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] 264 - core 165 - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 c …[long line trimmed]
+2026-11-02T15:42:05.926Z Output #0, matroska, to '/home/hatch/workspace/tdarr-labwork/cache/tdarr-workDir2-X6mUBRO/1793634122880/Harbour Lights - Trailer.mkv':
+2026-11-02T15:42:05.926Z   Metadata:
+2026-11-02T15:42:05.926Z     encoder         : Lavf61.7.103
+2026-11-02T15:42:05.926Z   Stream #0:0: Video: h264 (H264 / 0x34363248), yuv420p(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 25 fps, 1k tbn
+2026-11-02T15:42:05.926Z       Metadata:
+2026-11-02T15:42:05.926Z         DURATION        : 00:00:06.000000000
+2026-11-02T15:42:05.926Z         encoder         : Lavc61.19.101 libx264
+2026-11-02T15:42:05.926Z       Side data:
+2026-11-02T15:42:05.926Z         cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+2026-11-02T15:42:05.926Z   Stream #0:1: Audio: mp2 (P[0][0][0] / 0x0050), 44100 Hz, mono, s16p, 384 kb/s
+2026-11-02T15:42:05.926Z       Metadata:
+2026-11-02T15:42:05.926Z         ENCODER         : Lavc62.28.102 mp2
+2026-11-02T15:42:05.926Z         DURATION        : 00:00:06.000000000
+2026-11-02T15:42:05.926Z frame=  112 fps=0.0 q=28.0 size=       1KiB time=00:00:04.40 bitrate=   1.4kbits/s speed= 8.8x    
+[out#0/matroska @ 0x555f025523c0] video:558KiB audio:282KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.405754%
+2026-11-02T15:42:05.926Z frame=  150 fps=0.0 q=-1.0 Lsize=     843KiB time=00:00:05.92 bitrate=1166.7kbits/s speed=8.96x    
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] frame I:1     Avg QP:12.35  size:  7696
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] frame P:48    Avg QP:19.71  size:  5615
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] frame B:101   Avg QP:26.88  size:  2907
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] i16 v,h,dc,p: 84% 12%  3%  0%
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] i8c dc,h,v,p: 57% 17% 24%  3%
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] Weighted P-Frames: Y:0.0% UV:0.0%
+2026-11-02T15:42:05.926Z [libx264 @ 0x555f02531100] kb/s:761.09
+2026-11-02T15:42:05.926Z 
+2026-11-02T15:42:05.926Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:CLI /home/hatch/workspace/tdarr-labwork/tdarr/assets/app/ffmpeg/linux_x64/ffmpeg exited with code: 0
+2026-11-02T15:42:05.926Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:logOutcome:tSuc
+2026-11-02T15:42:05.926Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Plugin run complete
+2026-11-02T15:42:05.926Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"_id":"/home/hatch/workspace/tdarr-labwork/cache/tdarr-workDir2-X6mUBRO/1793634122880/Harbour Lights - Trailer.mkv","outputNumber":1,"variables":{"automation":{},"ffmpegCommand":{"init":false,"inputFiles":[],"streams":[{"index":0,"code …[long line trimmed]
+2026-11-02T15:42:05.927Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Found next plugin: labflowh264::repF Replace Original File
+2026-11-02T15:42:05.927Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:[Step W03] [C6] [Lab Flow - Make H.264] Running Community plugin: 1.0.0: replaceOriginalFile: Replace Original File 
+2026-11-02T15:42:05.927Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning original library file
+2026-11-02T15:42:05.927Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{
+2026-11-02T15:42:05.927Z   "exifToolScan": true,
+2026-11-02T15:42:05.927Z   "mediaInfoScan": false,
+2026-11-02T15:42:05.927Z   "closedCaptionScan": false
+2026-11-02T15:42:05.927Z }
+2026-11-02T15:42:05.927Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:File found locally
+2026-11-02T15:42:05.927Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loading source file: "/home/hatch/workspace/tdarr-labwork/cache/tdarr-workDir2-X6mUBRO/1793634122880/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:05.928Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning source file: "/home/hatch/workspace/tdarr-labwork/cache/tdarr-workDir2-X6mUBRO/1793634122880/Harbour Lights - Trailer.mkv"
+2026-11-02T15:42:05.928Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan types: {
+2026-11-02T15:42:05.928Z   "exifToolScan": true,
+2026-11-02T15:42:05.928Z   "mediaInfoScan": false,
+2026-11-02T15:42:05.928Z   "closedCaptionScan": false
+2026-11-02T15:42:05.928Z }
+2026-11-02T15:42:05.928Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scanning file
+2026-11-02T15:42:05.928Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Node scanning file
+2026-11-02T15:42:06.929Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan complete
+2026-11-02T15:42:06.930Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Source file scan complete
+2026-11-02T15:42:06.930Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Loaded plugin inputs: {}
+2026-11-02T15:42:06.931Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:File has changed, replacing original file
+2026-11-02T15:42:06.931Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"currentPath":"/home/hatch/workspace/tdarr-labwork/cache/tdarr-workDir2-X6mUBRO/1793634122880/Harbour Lights - Trailer.mkv","newPath":"/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv","newPathTmp":"/home/hatch/wo …[long line trimmed]
+2026-11-02T15:42:08.933Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Calculating cache file size in bytes
+2026-11-02T15:42:08.934Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:863370
+2026-11-02T15:42:08.934Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Attempting move from /home/hatch/workspace/tdarr-labwork/cache/tdarr-workDir2-X6mUBRO/1793634122880/Harbour Lights - Trailer.mkv to /home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv.tmp, method 1
+2026-11-02T15:42:08.934Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:After move/copy, destination file of size 863370 does match cache file of size 863370
+2026-11-02T15:42:08.934Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"originalFileExists":true,"currentFileIsNotOriginal":true}
+2026-11-02T15:42:08.934Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Renaming original file to: /home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv.partial.old
+2026-11-02T15:42:10.936Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Calculating cache file size in bytes
+2026-11-02T15:42:10.936Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:863370
+2026-11-02T15:42:10.936Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Attempting move from /home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv.tmp to /home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv, method 1
+2026-11-02T15:42:10.937Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:After move/copy, destination file of size 863370 does match cache file of size 863370
+2026-11-02T15:42:10.937Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Deleting renamed original file: /home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv.partial.old
+2026-11-02T15:42:10.937Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Plugin run complete
+2026-11-02T15:42:10.937Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:{"_id":"/home/hatch/workspace/tdarr-labwork/media/Harbour Lights - Trailer.mkv","outputNumber":1,"variables":{"automation":{},"ffmpegCommand":{"init":false,"inputFiles":[],"streams":[{"index":0,"codec_name":"mpeg2video","codec_long_name …[long line trimmed]
+2026-11-02T15:42:10.937Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:No next plugin
+2026-11-02T15:42:10.937Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Node scanning file
+2026-11-02T15:42:11.938Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Scan complete
+2026-11-02T15:42:11.939Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Old size: 0.0016172714531421661
+2026-11-02T15:42:11.939Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:New size: 0.0008040759712457657
+2026-11-02T15:42:11.939Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:Size difference: 0.0008131954818964005
+2026-11-02T15:42:11.940Z X6mUBRO:Node[good-gar]:Worker[odd-olm]:File processing complete

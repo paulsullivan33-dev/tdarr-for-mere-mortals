@@ -1,0 +1,98 @@
+t04 — Scanning the library, two honest failures, then success
+============================================================
+The scan call (the same one the interface's "Scan (Find new)"
+button makes):
+
+  $ curl -s -X POST …/api/v2/scan-files -d '{"data":
+      {"scanConfig":{"dbID":"lablibrary1",
+                     "arrayOrPath":"…/media",
+                     "mode":"scanFindNew"}}}'
+  OK
+
+ATTEMPT 1 — the files were probed and queued within seconds,
+and both jobs failed. The node log said why:
+
+  [ERROR] Tdarr_Node - Error: Error: Cannot find module
+    '../../../../FlowHelpers/1.0.0/fileUtils'
+
+The lab had copied the community flow plugins into the server
+but not their shared FlowHelpers library (t02's plugin
+listing). FlowHelpers was copied in, server and node
+restarted, the two errored file records and their job records
+deleted through the API, and the library scanned again.
+
+ATTEMPT 2 — the flow now loaded, and failed one step later,
+in the input plugin. From the job report:
+
+  Worker: [Step W03] [C1] [Lab Flow - Make H.264] Running
+    Community plugin: 1.0.0: inputFile: Input File
+  Worker: [-error-]
+  Worker: Error: Cannot find module '../../../../../methods/lib'
+    Require stack:
+    - …/plugins/FlowPlugins/CommunityFlowPlugins/input/inputFile/1.0.0/index.js
+
+The plugins also need the repository's methods/ folder beside
+them. That was copied in too. Meanwhile both health checks
+failed for a different, simpler reason — from a health check
+job report:
+
+  Subworker: Error executing binary: HandBrakeCLI
+    No such file or directory (os error 2)
+
+The library template defaults health checks to HandBrakeCLI,
+which Tdarr does not bundle and this machine does not have.
+The library was switched to ffmpeg health checks (t03), server
+and node restarted, records cleared, scan repeated.
+
+ATTEMPT 3 — success, end to end:
+
+  $ (file table after ~50 s)
+  Cooking Basics - Episode One.avi | HC: Success |
+    TDM: Transcode success | codec: h264 | size MB: 0.279
+  Harbour Lights - Trailer.mkv     | HC: Success |
+    TDM: Transcode success | codec: h264 | size MB: 0.823
+
+  (HC = health check verdict, TDM = transcode decision)
+
+The command the flow built and the node ran (from the job
+report, t06; the runner is Tdarr's bundled ffmpeg):
+
+  ffmpeg -y -i "…/media/Harbour Lights - Trailer.mkv"
+    -map 0:0 -c:0 libx264 -crf 23 -preset veryfast
+    -map 0:1 -c:1 copy
+    "…/cache/tdarr-workDir2-X6mUBRO/…/Harbour Lights - Trailer.mkv"
+
+Video re-encoded with libx264 at quality 23; the MP2 audio
+stream copied untouched; output written into the transcode
+cache first — never over the original.
+
+Replacement, as the report tells it (trimmed):
+
+  File has changed, replacing original file
+  Attempting move from …/cache/…/Harbour Lights - Trailer.mkv
+    to …/media/Harbour Lights - Trailer.mkv.tmp, method 1
+  After move/copy, destination file of size 863370 does
+    match cache file of size 863370
+  Renaming original file to: …/Harbour Lights - Trailer.mkv.partial.old
+  Attempting move from …/Harbour Lights - Trailer.mkv.tmp
+    to …/media/Harbour Lights - Trailer.mkv, method 1
+  …destination file of size 863370 does match…
+  Deleting renamed original file: …/Harbour Lights - Trailer.mkv.partial.old
+  Old size: 0.0016172714531421661 (GB)  New size: 0.0008040759712457657 (GB)
+
+After — the same ffprobe the reader can run (t01 has before):
+
+  == Cooking Basics - Episode One.avi
+  stream|codec_name=h264|codec_type=video
+  stream|codec_name=mp3|codec_type=audio      <- audio copied
+  format|size=292666          (was 721048: 59% smaller)
+
+  == Harbour Lights - Trailer.mkv
+  stream|codec_name=h264|codec_type=video
+  stream|codec_name=mp2|codec_type=audio      <- audio copied
+  format|size=863370          (was 1736532: 50% smaller)
+
+Both files keep their names and places; only their insides
+changed. Each file also received a fresh health check on its
+new version (the MKV's job list shows two Success health
+checks — one before the transcode, one after).

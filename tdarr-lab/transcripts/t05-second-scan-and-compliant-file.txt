@@ -1,0 +1,37 @@
+t05 — Second scan, and a file that already obeys the rule
+============================================================
+Two questions remained: does Tdarr re-do finished work, and
+what does it do with a file that is already H.264?
+
+Repeating the exact scan of t04 (Scan (Find new)):
+
+  …no new jobs at all. The job table afterwards is identical
+  (5 jobs: 3 health checks, 2 transcodes). Tdarr wrote the
+  current state of both files when it replaced them, so as
+  far as "find new" is concerned there is nothing new to
+  find — the files on disk match the files in its catalogue.
+
+Then a third fixture was generated (t01) that already obeys
+the rule — H.264 video, AAC audio — dropped into the library
+folder, and the same scan run again:
+
+  $ (file table)
+  Already Compliant - Short.mp4 | HC: Success |
+    TDM: Not required | codec: h264
+
+  Its two jobs: healthcheck "Success", transcode "Not required".
+
+From its transcode job report (the whole flow, three lines):
+
+  [C1] Running Community plugin: inputFile: Input File
+       -> {"outputNumber":1, …}
+  [C2] Running Community plugin: checkVideoCodec
+       -> {"outputNumber":1, …}        <- output 1: "file HAS
+       No next plugin                      the codec" — the
+                                           flow simply ends
+
+No ffmpeg command was built, nothing entered the cache, and
+the file on disk is the file that was generated (483,259
+bytes before and after). A flow is a sieve, not a sausage
+machine: files that pass the checks fall out the bottom
+untouched, at the cost of one probe each.

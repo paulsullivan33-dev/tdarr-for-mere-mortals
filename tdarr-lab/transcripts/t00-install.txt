@@ -1,0 +1,58 @@
+t00 — Downloading and unpacking Tdarr 3.04.00 (Linux x64)
+============================================================
+Machine: Ubuntu 24.04 sandbox, no containers, everything on
+loopback. Downloads only from the project's own storage, listed
+in the project's own version index:
+
+  $ curl -s https://storage.tdarr.io/versions.json
+  …a map of every release; the newest entry is "3.04.00", with
+  per-platform URLs, e.g.:
+    "linux_x64": {
+      "Tdarr_Updater": "https://storage.tdarr.io/versions/3.04.00/linux_x64/Tdarr_Updater.zip",
+      "Tdarr_Server":  "https://storage.tdarr.io/versions/3.04.00/linux_x64/Tdarr_Server.zip",
+      "Tdarr_Node":    "https://storage.tdarr.io/versions/3.04.00/linux_x64/Tdarr_Node.zip"
+    }
+
+First attempt: the recommended Tdarr_Updater.
+
+  $ curl -sL -o Tdarr_Updater.zip https://storage.tdarr.io/versions/3.04.00/linux_x64/Tdarr_Updater.zip
+  $ unzip Tdarr_Updater.zip        (2,169,419-byte zip; contains
+                                    Tdarr_Updater, VERSION, README.txt)
+  $ cat VERSION
+  3.04.00
+  $ ./Tdarr_Updater
+  [ERROR] Tdarr_Updater - error sending request for url (https://api.tdarr.io/api/v2/updater-config)
+  [ERROR] Tdarr_Updater - Failed to get package index, retrying
+  …retried for about a minute, then:
+  Tdarr_Updater | Failed to get package index after retries: error sending request for url (https://api.tdarr.io/api/v2/updater-config)
+
+curl reaches the same URL without trouble (the sandbox routes
+web traffic through a proxy, and this binary's requests do not
+get through it — the same failure later stops the server's
+plugin updater, with a TLS "UnknownIssuer" complaint). The
+project's documentation offers the direct packages as the
+alternative to the Updater, so the lab took those — same
+version, same official storage:
+
+  $ curl -sL -o Tdarr_Server.zip https://storage.tdarr.io/versions/3.04.00/linux_x64/Tdarr_Server.zip   (236,073,377 bytes)
+  $ curl -sL -o Tdarr_Node.zip   https://storage.tdarr.io/versions/3.04.00/linux_x64/Tdarr_Node.zip     (229,720,256 bytes)
+  $ unzip Tdarr_Server.zip; unzip Tdarr_Node.zip
+
+Both zips unpack into ONE shared folder (the two programs are
+meant to live side by side):
+
+  Tdarr_Server, Tdarr_Node        the two programs (plus *_Tray)
+  rust/                           the engine binaries they launch
+  assets/app/ffmpeg/linux_x64/    bundled ffmpeg + ffprobe
+  assets/app/ccextractor/         bundled closed-caption tool
+  node_modules/, public/, runtime/, srcug/
+
+The version check that needs no running server:
+
+  $ ./assets/app/ffmpeg/linux_x64/ffmpeg -version | head -1
+  ffmpeg version 7.1.4-Jellyfin Copyright (c) 2000-2026 the FFmpeg developers
+
+Tdarr bundles the Jellyfin build of ffmpeg 7.1.4 — it does not
+ask your system for ffmpeg at all. (The sandbox also has its
+own ffmpeg 8.1.2, which the lab used to make the fixtures;
+Tdarr itself never touched it.)
